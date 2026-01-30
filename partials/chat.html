@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="./assets/style.css">
 <!-- 1) Prepare global plans -->
 <script>
   window.__PLANS__ = [];
@@ -6,15 +6,15 @@
 
 <!-- 2) Load plans -->
 <script type="module">
-  const res = await fetch("/data/plans.json");
+  const res = await fetch("./data/plans.json");
   window.__PLANS__ = await res.json();
 </script>
 
 <!-- 3) Offer renderer -->
-<script src="/assets/offers.js"></script>
+<script src="./assets/offers.js"></script>
 
 <!-- 4) Chat logic -->
-<script src="/assets/frontendchat.js"></script>
+<script src="./assets/frontendchat.js"></script>
 
 <div id="dealett-chat">
   <button id="chat-toggle" aria-label="Öppna Dealett-AI chatt">
@@ -57,5 +57,6 @@
   </div>
 
 </div>
+
 
 
