@@ -192,16 +192,19 @@ form.onsubmit = async e => {
   input.value = "";
 
 
-  try {
-    const res = await fetch("/api/chat", {
-      method: "POST",
-      headers: {
-  "Content-Type": "application/json",
-  "X-Chat-Session": localStorage.getItem("chat_sid")
-},
+ try {
+  const response = await fetch("https://dealett-backend.onrender.com/api/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Chat-Session": localStorage.getItem("chat_sid")
+    },
+    body: JSON.stringify(data)
+  });
 
-      body: JSON.stringify({ message: text })
-    });
+  const result = await response.json();
+}
+
 
     if (!res.ok) {
       addMessage("Server error. Try again.", "ai");
@@ -233,5 +236,6 @@ window.addEventListener("beforeunload", () => {
     !panel.classList.contains("closed")
   );
 });
+
 
 }
