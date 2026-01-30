@@ -448,9 +448,8 @@ if (!chosenOffer) {
     ? chosenOffer.querySelector("img").src
     : "";
   
-  const offerPrice = chosenOffer
-    ? chosenOffer.querySelector(".font-semibold.text-lg").textContent.trim()
-    : "";
+  const priceEl = chosenOffer?.querySelector(".text-xl.font-bold");
+const offerPrice = priceEl ? priceEl.textContent.trim() : "";
     const rewardDistribution =
     JSON.parse(localStorage.getItem("rewardDistribution")) || {};
     let rewardsHTML = Object.entries(rewardDistribution)
