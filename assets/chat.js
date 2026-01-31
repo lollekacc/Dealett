@@ -191,8 +191,7 @@ form.onsubmit = async e => {
   addMessage(text, "user");
   input.value = "";
 
-
- try {
+try {
   const response = await fetch("https://dealett-backend.onrender.com/api/chat", {
     method: "POST",
     headers: {
@@ -203,7 +202,11 @@ form.onsubmit = async e => {
   });
 
   const result = await response.json();
+
+} catch (error) {
+  console.error("Chat request failed:", error);
 }
+
 
 
     if (!res.ok) {
@@ -239,3 +242,4 @@ window.addEventListener("beforeunload", () => {
 
 
 }
+
