@@ -564,12 +564,13 @@ const offerPrice = priceEl ? priceEl.textContent.trim() : "";
           Starta nu
         </button>
 
-        <button
-          class="start-option"
-          data-start="30"
-          type="button">
-          Fr.o.m 30 dagar
-        </button>
+       <button
+  class="start-option"
+  data-start="binding"
+  type="button">
+  Starta när bindningstiden slutar
+</button>
+
       </div>
     </div>
 <p id="startDateText" class="mt-4 text-sm text-gray-600 hidden">
@@ -603,23 +604,24 @@ document.querySelectorAll(".start-option").forEach(btn => {
 
     btn.classList.add("active");
 
-    startChoice = btn.dataset.start;
-    let actualStartDate;
+ startChoice = btn.dataset.start;
+let actualStartDate;
 
-    if (startChoice === "now") {
-      actualStartDate = new Date().toISOString().split("T")[0];
-    } else {
-      const future = new Date();
-      future.setDate(future.getDate() + Number(startChoice));
-      actualStartDate = future.toISOString().split("T")[0];
+if (startChoice === "now") {
+  actualStartDate = new Date().toISOString().split("T")[0];
+}
 
-      btn.textContent = `Fr.o.m ${actualStartDate}`;
-    }
+if (startChoice === "binding") {
+  actualStartDate = abonState.bindingEndDate;
+}
 
-    localStorage.setItem("startDateChoice", actualStartDate);
+if (!actualStartDate) return;
 
-    document.getElementById("startDateValue").textContent = actualStartDate;
-    document.getElementById("startDateText").classList.remove("hidden");
+localStorage.setItem("startDateChoice", actualStartDate);
+
+document.getElementById("startDateValue").textContent = actualStartDate;
+document.getElementById("startDateText").classList.remove("hidden");
+
   });
 });
 
