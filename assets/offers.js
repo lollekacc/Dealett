@@ -603,7 +603,7 @@ document.querySelectorAll(".start-option").forEach(btn => {
 
     btn.classList.add("active");
 
-    const startChoice = btn.dataset.start;
+    startChoice = btn.dataset.start;
     let actualStartDate;
 
     if (startChoice === "now") {
