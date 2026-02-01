@@ -44,13 +44,20 @@ function restoreMessages() {
 const resetBtn = document.getElementById("chat-reset");
 if (resetBtn) {
   resetBtn.onclick = () => {
-    messages.innerHTML = "";
-    localStorage.removeItem(CHAT_HISTORY_KEY);
-    localStorage.removeItem("chat_sid");
-    quizState.persons = null;
-    quizState.data = null;
-    addMessage("Hej! Vad kan jag hjälpa dig med?", "ai");
-  };
+  messages.innerHTML = "";
+  localStorage.removeItem(CHAT_HISTORY_KEY);
+
+  const sid = (window.crypto && crypto.randomUUID)
+    ? crypto.randomUUID()
+    : Math.random().toString(36).slice(2);
+  localStorage.setItem("chat_sid", sid);
+
+  quizState.persons = null;
+  quizState.data = null;
+
+  addMessage("Hej! Vad kan jag hjälpa dig med?", "ai");
+};
+
 }
 
 if (!toggle || !panel || !close || !form || !input || !messages) {
@@ -189,14 +196,16 @@ form.onsubmit = async e => {
   input.value = "";
 
   try {
-    const response = await fetch("https://dealett-backend.onrender.com/api/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Chat-Session": localStorage.getItem("chat_sid")
-      },
-      body: JSON.stringify({ message: text })
-    });
+    const sid = localStorage.getItem("chat_sid");
+const headers = { "Content-Type": "application/json" };
+if (sid) headers["X-Chat-Session"] = sid;
+
+fetch("https://dealett-backend.onrender.com/api/chat", {
+  method: "POST",
+  headers,
+  body: JSON.stringify({ message: msg })
+})
+
 
     if (!response.ok) {
       addMessage("Server error. Try again.", "ai");
@@ -232,6 +241,7 @@ window.addEventListener("beforeunload", () => {
 
 
 }
+
 
 
 
