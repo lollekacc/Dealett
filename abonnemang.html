@@ -286,35 +286,43 @@
   </div>
 </div>
 <script>
-const slider = document.getElementById("heroSlider");
-let currentSlide = 0;
-const totalSlides = slider.children.length;
-const AUTO_INTERVAL = 6000;
+document.addEventListener("DOMContentLoaded", () => {
 
-function goToSlide(i) {
-  currentSlide = i;
-  slider.scrollTo({
-    left: slider.clientWidth * currentSlide,
-    behavior: "smooth"
-  });
-}
+  const slider = document.getElementById("heroSlider");
+  if (!slider) return;
 
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % totalSlides;
-  goToSlide(currentSlide);
-}
+  let currentSlide = 0;
+  const totalSlides = slider.children.length;
+  const AUTO_INTERVAL = 6000;
 
-function scrollHero(dir) {
-  currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
-  goToSlide(currentSlide);
-}
+  function goToSlide(i) {
+    currentSlide = i;
+    slider.scrollTo({
+      left: slider.clientWidth * currentSlide,
+      behavior: "smooth"
+    });
+  }
 
-setInterval(nextSlide, AUTO_INTERVAL);
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    goToSlide(currentSlide);
+  }
+
+  window.scrollHero = function(dir) {
+    currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+    goToSlide(currentSlide);
+  };
+
+  setInterval(nextSlide, AUTO_INTERVAL);
+
+});
 </script>
+
 
 
 </body>
 </html>
+
 
 
 
