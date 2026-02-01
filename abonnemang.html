@@ -16,20 +16,56 @@
   <!-- HEADER -->
   <div id="header-placeholder"></div>
 
-  <!-- HERO -->
-  <section class="relative w-full h-[380px] overflow-hidden">
-    <img src="https://png.pngtree.com/thumb_back/fw800/background/20250902/pngtree-abstract-mobile-phone-background-image_18720985.webp"
-         class="w-full h-full object-cover opacity-80">
-    <div class="absolute inset-0 bg-gradient-to-b from-[#004C9E]/50 to-[#0C4A3C]/70"></div>
+   <!-- HERO -->
+<section class="relative w-full overflow-hidden">
+  <div class="relative">
 
-    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-      <h1 class="text-4xl font-extrabold text-white drop-shadow-lg">Välj rätt abonnemang</h1>
-      <p class="mt-4 text-white/90 text-lg max-w-xl mx-auto">
-        Utforska de bästa alternativen för dig eller din familj.
-      </p>
+    <!-- SLIDER -->
+    <ul id="heroSlider"
+        class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide">
+
+      <!-- Slide 1 -->
+      <li class="min-w-full snap-start relative h-[380px]">
+        <img src="https://images.ctfassets.net/wnyreqeg7zsz/6QnqlXszeR8PTYtoTDBGax/aa1932112dc7c83fab22d2c9fbf6dc37/ViaplayWinterSport26_visuals_Horizontal_platform_AW_NoCTA.jpg"
+             class="w-full h-full object-cover">
+      </li>
+
+      <!-- Slide 2 -->
+      <li class="min-w-full snap-start relative h-[380px]">
+        <img src="https://www.dif.se/_next/image?url=https%3A%2F%2Fwww.dif.se%2Fmedia%2Fikhldpq4%2Fdiscovery-1920x1080.jpg&w=3840&q=75"
+             class="w-full h-full object-cover">
+      </li>
+
+      <!-- Slide 3 -->
+      <li class="min-w-full snap-start relative h-[380px]">
+        <img src="https://cdn1-photos.shl.se/photos/24/06/f8e987d9-376f-4452-bb0a-17793a01f53aTV4216x9.jpg?ixlib=js-3.8.0&w=1920&h=1080&auto=format&fp-debug=0&fp-y=0.5&fp-x=0.5&crop=focalpoint&fit=crop&s=9e4a4b6a9060e7cd81aa553c88886206"
+             class="w-full h-full object-cover">
+      </li>
+
+    </ul>
+
+    <!-- ARROWS -->
+    <button onclick="scrollHero(-1)"
+      class="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2
+             bg-white/70 hover:bg-white w-12 h-12 items-center justify-center rounded-full">
+      ‹
+    </button>
+
+    <button onclick="scrollHero(1)"
+      class="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2
+             bg-white/70 hover:bg-white w-12 h-12 items-center justify-center rounded-full">
+      ›
+    </button>
+
+    <!-- DOTS -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
+      <button onclick="goToSlide(0)" class="w-3 h-3 bg-white rounded-full"></button>
+      <button onclick="goToSlide(1)" class="w-3 h-3 bg-white/60 rounded-full"></button>
+      <button onclick="goToSlide(2)" class="w-3 h-3 bg-white/60 rounded-full"></button>
     </div>
-  </section>
 
+  </div>
+</section>
   <section id="abonnemangQuizSection" class="mt-20 px-10 pb-20">  
     <div class="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-[1600px] mx-auto">
   
@@ -259,10 +295,36 @@
     </iframe>
   </div>
 </div>
+<script>
+const slider = document.getElementById("heroSlider");
+let currentSlide = 0;
+const totalSlides = slider.children.length;
+const AUTO_INTERVAL = 6000;
 
+function goToSlide(i) {
+  currentSlide = i;
+  slider.scrollTo({
+    left: slider.clientWidth * currentSlide,
+    behavior: "smooth"
+  });
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  goToSlide(currentSlide);
+}
+
+function scrollHero(dir) {
+  currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+  goToSlide(currentSlide);
+}
+
+setInterval(nextSlide, AUTO_INTERVAL);
+</script>
 
 
 </body>
 </html>
+
 
 
