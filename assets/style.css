@@ -1488,6 +1488,16 @@ nav a:hover {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+@keyframes heroGlow {
+  0% { opacity: .9; }
+  50% { opacity: 1; }
+  100% { opacity: .9; }
+}
+
+.animate-heroGlow {
+  animation: heroGlow 6s ease-in-out infinite;
+}
+
 
 
 
