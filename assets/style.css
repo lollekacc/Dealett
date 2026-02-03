@@ -1503,3 +1503,12 @@ nav a:hover {
 .partner-wrapper:hover {
   transform: translateY(-3px);
 }
+.chat-header {
+  background: linear-gradient(to right, #0f766e, #065f46);
+  color: white;
+  padding: 12px 16px;
+}
+.chat-panel {
+  max-height: 80vh;
+}
+
