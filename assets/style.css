@@ -1453,11 +1453,3 @@ nav a:hover {
   animation: heroGlow 6s ease-in-out infinite;
   will-change: opacity;
 }
-.chat-panel {
-  max-height: 80vh;
-}
-
-
-
-
-
