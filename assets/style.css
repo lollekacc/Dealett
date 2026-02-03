@@ -1497,9 +1497,9 @@ nav a:hover {
   animation: heroGlow 6s ease-in-out infinite;
   will-change: opacity;
 }
-
-
-
-
-
-
+.partner-wrapper {
+  transition: transform .3s ease;
+}
+.partner-wrapper:hover {
+  transform: translateY(-3px);
+}
