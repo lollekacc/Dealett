@@ -25,6 +25,35 @@
       Smarta mobilabonnemang anpassade för företag i alla storlekar – med trygg 5G-uppkoppling och förutsägbara kostnader.
     </p>
   </section>
+<!-- BUSINESS SIZE QUESTION -->
+<section class="py-12 bg-gray-50">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+
+    <h2 class="text-2xl md:text-3xl font-bold text-[#0C4A3C] mb-6">
+      Hur stort är företaget?
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <button class="business-size border-2 border-[#0C4A3C] rounded-xl p-6 hover:bg-[#0C4A3C] hover:text-white transition"
+              data-size="small">
+        1–10 personer
+      </button>
+
+      <button class="business-size border-2 border-[#0C4A3C] rounded-xl p-6 hover:bg-[#0C4A3C] hover:text-white transition"
+              data-size="medium">
+        10–100 personer
+      </button>
+
+      <button class="business-size border-2 border-[#0C4A3C] rounded-xl p-6 hover:bg-[#0C4A3C] hover:text-white transition"
+              data-size="large">
+        100+ personer
+      </button>
+
+    </div>
+
+  </div>
+</section>
 
   <!-- PLANS -->
   <section class="py-20">
@@ -418,8 +447,16 @@
       chatScript.src = "assets/chat.js";
       document.body.appendChild(chatScript);
     });
+    document.addEventListener("click", e => {
+  if (e.target.classList.contains("business-size")) {
+    const size = e.target.dataset.size;
+    localStorage.setItem("business_size", size);
+    console.log("Selected:", size);
+  }
+});
   </script>
 
 </body>
 </html>
+
 
