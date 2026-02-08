@@ -63,15 +63,9 @@ if (resetBtn) {
 if (!toggle || !panel || !close || !form || !input || !messages) {
   console.error("Chat elements missing");
 } else {
-// Restore chat open/closed state
-const wasOpen = localStorage.getItem(CHAT_OPEN_KEY);
 
-if (wasOpen === "true") {
   panel.classList.remove("closed");
-} else {
-  panel.classList.add("closed");
-}
-
+localStorage.setItem(CHAT_OPEN_KEY, "true");
 
 toggle.onclick = () => {
   panel.classList.toggle("closed");
@@ -240,6 +234,7 @@ window.addEventListener("beforeunload", () => {
 
 
 }
+
 
 
 
