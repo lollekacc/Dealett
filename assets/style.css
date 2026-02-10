@@ -916,7 +916,7 @@ nav a:hover {
   top: 120px;
   right: 80px;
 
-  width: 440px;
+  width: 640px;
   height: 620px;
 
   transform: none !important;
@@ -1498,6 +1498,7 @@ nav a:hover {
   opacity: 1;
   transform: translateY(0);
 }
+
 
 
 
