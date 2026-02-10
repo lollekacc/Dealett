@@ -244,23 +244,27 @@ document.addEventListener("DOMContentLoaded", async () => {
     const hero = anchor.closest("section");
     if (!hero) return;
 
-    function updateChatPosition() {
+function updateChatPosition() {
 
-      const heroRect = hero.getBoundingClientRect();
-      const heroVisible = heroRect.top < 150 && heroRect.bottom > 200;
+  const heroRect = hero.getBoundingClientRect();
+  const chatHeight = chatRoot.offsetHeight;
 
-      if (heroVisible) {
-        if (!chatRoot.classList.contains("hero-mode")) {
-          anchor.appendChild(chatRoot);
-          chatRoot.classList.add("hero-mode");
-        }
-      } else {
-        if (chatRoot.classList.contains("hero-mode")) {
-          document.body.appendChild(chatRoot);
-          chatRoot.classList.remove("hero-mode");
-        }
-      }
+  // Chat stays in hero as long as hero bottom
+  // is still lower than the chat height
+  const keepInHero = heroRect.bottom > chatHeight + 120;
+
+  if (keepInHero) {
+    if (!chatRoot.classList.contains("hero-mode")) {
+      anchor.appendChild(chatRoot);
+      chatRoot.classList.add("hero-mode");
     }
+  } else {
+    if (chatRoot.classList.contains("hero-mode")) {
+      document.body.appendChild(chatRoot);
+      chatRoot.classList.remove("hero-mode");
+    }
+  }
+}
 
     window.addEventListener("scroll", updateChatPosition, { passive: true });
     window.addEventListener("resize", updateChatPosition);
@@ -375,6 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
