@@ -244,15 +244,17 @@ function initHeroChatMovement() {
   const hero = anchor.closest("section");
   if (!hero) return;
 
+  // LOCK hero bottom once (before chat moves)
+  const heroBottomStatic = hero.offsetTop + hero.offsetHeight;
+
   let inHero = false;
 
   function updateChatPosition() {
 
-    const heroBottom = hero.offsetTop + hero.offsetHeight;
     const scrollY = window.scrollY;
+    const switchPoint = heroBottomStatic - chatRoot.offsetHeight - 40;
 
-    // If user has not scrolled past hero bottom minus chat height
-    if (scrollY < heroBottom - chatRoot.offsetHeight - 40) {
+    if (scrollY < switchPoint) {
 
       if (!inHero) {
         anchor.appendChild(chatRoot);
@@ -276,7 +278,6 @@ function initHeroChatMovement() {
 
   updateChatPosition();
 }
-
 
 });
 </script>
@@ -386,6 +387,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
