@@ -244,25 +244,28 @@ document.addEventListener("DOMContentLoaded", async () => {
     const hero = anchor.closest("section");
     if (!hero) return;
 
+let inHero = true;
+
 function updateChatPosition() {
 
   const heroRect = hero.getBoundingClientRect();
   const chatHeight = chatRoot.offsetHeight;
 
-  // Chat stays in hero as long as hero bottom
-  // is still lower than the chat height
-  const keepInHero = heroRect.bottom > chatHeight + 120;
+  const leavePoint = chatHeight + 120;
+  const enterPoint = chatHeight + 220; // buffer zone
 
-  if (keepInHero) {
-    if (!chatRoot.classList.contains("hero-mode")) {
-      anchor.appendChild(chatRoot);
-      chatRoot.classList.add("hero-mode");
-    }
-  } else {
-    if (chatRoot.classList.contains("hero-mode")) {
-      document.body.appendChild(chatRoot);
-      chatRoot.classList.remove("hero-mode");
-    }
+  if (inHero && heroRect.bottom <= leavePoint) {
+    // leave hero
+    document.body.appendChild(chatRoot);
+    chatRoot.classList.remove("hero-mode");
+    inHero = false;
+  }
+
+  if (!inHero && heroRect.bottom > enterPoint) {
+    // re-enter hero
+    anchor.appendChild(chatRoot);
+    chatRoot.classList.add("hero-mode");
+    inHero = true;
   }
 }
 
@@ -379,6 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
