@@ -909,17 +909,19 @@ nav a:hover {
   right: 24px;
   z-index: 9999;
 }
-#dealett-chat.hero-mode #chat-panel {
-  width: 440px;
-  height: 620px;
-}
+
 /* index hero placement */
 #chat-panel.hero-mode {
   position: absolute;
   top: 120px;
   right: 80px;
+
+  width: 440px;
+  height: 620px;
+
   transform: none !important;
 }
+
 
 #chat-toggle {
   position: fixed;
@@ -1496,6 +1498,7 @@ nav a:hover {
   opacity: 1;
   transform: translateY(0);
 }
+
 
 
 
