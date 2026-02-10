@@ -73,6 +73,7 @@
   class="relative w-full bg-cover bg-center bg-no-repeat py-36 px-6"
   style="background-image: url('images/herologo.png');"
 >
+  <div id="hero-chat-anchor"></div>
   <div id="hero-chat-container">
 </div>
 
@@ -120,6 +121,7 @@
     </div>
   </div>
 </section>
+  
 <section class="bg-white py-8 border-b border-gray-100">
   <div class="max-w-6xl mx-auto px-6 flex flex-wrap items-center justify-center gap-10 opacity-60 hover:opacity-100 transition duration-300">
 
@@ -332,29 +334,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!heroContainer) return;
 
-  setTimeout(() => {
-    const chatPanel = document.getElementById("chat-panel");
-    const chatToggle = document.getElementById("chat-toggle");
-
-    if (!chatPanel) return;
-
-    // Hide floating toggle on index
-    if (chatToggle) chatToggle.style.display = "none";
-
-    // Make panel visible
-    chatPanel.classList.remove("closed");
-
-    // Override positioning
-    chatPanel.style.position = "absolute";
-    chatPanel.style.top = "120px";
-    chatPanel.style.right = "80px";
-    chatPanel.style.transform = "none";
-
-    heroContainer.appendChild(chatPanel);
-
-  }, 300);
 
 });
+  document.addEventListener("DOMContentLoaded", () => {
+
+  const panel = document.getElementById("chat-panel");
+  const anchor = document.getElementById("hero-chat-anchor");
+
+  if (!panel || !anchor) return;
+
+  const hero = anchor.closest("section");
+
+  function updateChatPosition() {
+    const heroRect = hero.getBoundingClientRect();
+    const heroVisible = heroRect.bottom > 120;
+
+    if (heroVisible) {
+      // HERO MODE
+      if (!panel.classList.contains("hero-mode")) {
+        anchor.appendChild(panel);
+        panel.classList.add("hero-mode");
+      }
+    } else {
+      // FLOAT MODE
+      if (panel.classList.contains("hero-mode")) {
+        document.body.appendChild(panel);
+        panel.classList.remove("hero-mode");
+      }
+    }
+  }
+
+  window.addEventListener("scroll", updateChatPosition);
+  updateChatPosition();
+
+});
+
 </script>
 </body>
 </html>
+
