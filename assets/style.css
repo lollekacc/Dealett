@@ -910,7 +910,7 @@ nav a:hover {
   z-index: 9999;
 }
 
-/* index hero placement */
+/* Hero placement + resize */
 #chat-panel.hero-mode {
   position: absolute;
   top: 120px;
@@ -919,7 +919,7 @@ nav a:hover {
   width: 640px;
   height: 620px;
 
-  transform: none !important;
+  transform: scale(0.96);
 }
 
 
@@ -965,7 +965,7 @@ nav a:hover {
   width: min(560px, 95vw);
   height: min(780px, 92vh);
   transform-origin: right center;
-  transform: translate(100%, -50%);
+  transform: translate(100%, -50%) scale(1);
 transition:
   transform 0.4s cubic-bezier(.22,1,.36,1),
   opacity 0.25s ease,
@@ -1498,6 +1498,7 @@ transition:
   opacity: 1;
   transform: translateY(0);
 }
+
 
 
 
