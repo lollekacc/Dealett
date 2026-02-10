@@ -7,6 +7,10 @@ const input = document.getElementById("chat-input");
 const messages = document.getElementById("chat-messages");
 const CHAT_OPEN_KEY = "chat_open";
 const CHAT_HISTORY_KEY = "chat_history";
+const isIndexPage =
+  window.location.pathname.endsWith("index.html") ||
+  window.location.pathname === "/" ||
+  window.location.pathname === "";
 const quizState = {
   persons: null,
   data: null
@@ -63,22 +67,37 @@ if (resetBtn) {
 if (!toggle || !panel || !close || !form || !input || !messages) {
   console.error("Chat elements missing");
 } else {
-
+  
+if (!isIndexPage) {
+  // Normal pages
+  if (localStorage.getItem(CHAT_OPEN_KEY) === "true") {
+    panel.classList.remove("closed");
+  } else {
+    panel.classList.add("closed");
+  }
+} else {
+  // Index hero mode
   panel.classList.remove("closed");
-localStorage.setItem(CHAT_OPEN_KEY, "true");
+}
 
 toggle.onclick = () => {
   panel.classList.toggle("closed");
-  localStorage.setItem(
-    CHAT_OPEN_KEY,
-    !panel.classList.contains("closed")
-  );
+
+  if (!isIndexPage) {
+    localStorage.setItem(
+      CHAT_OPEN_KEY,
+      !panel.classList.contains("closed")
+    );
+  }
 };
 let lastScrollY = window.scrollY;
 
 close.onclick = () => {
   panel.classList.add("closed");
-  localStorage.setItem(CHAT_OPEN_KEY, "false");
+
+  if (!isIndexPage) {
+    localStorage.setItem("false");
+  }
 };
 restoreMessages();
 
@@ -235,6 +254,7 @@ window.addEventListener("beforeunload", () => {
 
 
 }
+
 
 
 
