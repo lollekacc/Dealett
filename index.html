@@ -236,37 +236,34 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 function initHeroChatMovement() {
 
-  const chatRoot = document.getElementById("dealett-chat");
+  const panel = document.getElementById("chat-panel");
   const anchor = document.getElementById("hero-chat-anchor");
 
-  if (!chatRoot || !anchor) return;
+  if (!panel || !anchor) return;
 
   const hero = anchor.closest("section");
   if (!hero) return;
-
-  // LOCK hero bottom once (before chat moves)
-  const heroBottomStatic = hero.offsetTop + hero.offsetHeight;
 
   let inHero = false;
 
   function updateChatPosition() {
 
+    const heroBottom = hero.offsetTop + hero.offsetHeight;
     const scrollY = window.scrollY;
-    const switchPoint = heroBottomStatic - chatRoot.offsetHeight - 40;
 
-    if (scrollY < switchPoint) {
+    if (scrollY < heroBottom - panel.offsetHeight - 40) {
 
       if (!inHero) {
-        anchor.appendChild(chatRoot);
-        chatRoot.classList.add("hero-mode");
+        anchor.appendChild(panel);
+        panel.classList.add("hero-mode");
         inHero = true;
       }
 
     } else {
 
       if (inHero) {
-        document.body.appendChild(chatRoot);
-        chatRoot.classList.remove("hero-mode");
+        document.body.appendChild(panel);
+        panel.classList.remove("hero-mode");
         inHero = false;
       }
 
@@ -275,9 +272,9 @@ function initHeroChatMovement() {
 
   window.addEventListener("scroll", updateChatPosition, { passive: true });
   window.addEventListener("resize", updateChatPosition);
-
   updateChatPosition();
 }
+
 
 });
 </script>
@@ -387,6 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
