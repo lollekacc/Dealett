@@ -1158,6 +1158,13 @@ nav a:hover {
     width: min(380px, 92vw);
     height: min(520px, 80vh);
   }
+   #chat-panel.hero-mode {
+  position: absolute;
+  top: 120px;
+  right: 80px;
+  transform: none !important;
+  height: 600px;
+}
 }
 
 @media (max-width: 900px) {
@@ -1474,3 +1481,4 @@ nav a:hover {
   opacity: 1;
   transform: translateY(0);
 }
+
