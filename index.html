@@ -14,56 +14,6 @@
 </head>
 
 <body class="min-h-screen font-[Inter] bg-[#f8fafc] text-gray-900 scroll-smooth">
-<!-- POPUP MODAL -->
-<div id="promo-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md hidden flex items-center justify-center z-[9999]">
-  <div class="relative rounded-3xl p-8 w-[92%] max-w-xl animate-popup bg-white/10 border border-white/20 shadow-[0_0_40px_rgba(0,0,0,0.6)]">
-
-    <!-- Animated gradient ring -->
-    <div class="absolute inset-0 rounded-3xl border-2 border-transparent gradient-ring pointer-events-none"></div>
-
-    <!-- Close Button -->
-    <button id="promo-close" aria-label="Stäng popup"
-            class="absolute top-4 right-5 text-white/80 hover:text-white text-3xl font-light">
-      &times;
-    </button>
-
-    <!-- Floating Product Images -->
-<!-- Floating Product Images (intertwined diagonally) -->
-<div class="relative w-full h-64 mb-6 flex justify-center items-center">
-
-  <!-- Rotating square BEHIND the box -->
-  <div class="rotating-square"></div>
-
-  <!-- PS5 top-left -->
-  <img src="images/ps5.jpg"
-       class="absolute w-40 drop-shadow-2xl floating-slow z-20"
-       style="top: 10px; left: 25%; transform: rotate(-10deg);">
-
-  <!-- TV bottom-right -->
-  <img src="images/samsung-tv.jpg"
-       class="absolute w-48 drop-shadow-2xl floating-fast z-10"
-       style="bottom: 0; right: 25%; transform: rotate(8deg);">
-
-</div>
-
-
-    <!-- Promo Text -->
-    <h2 class="text-3xl font-extrabold text-white text-center drop-shadow mb-3">
-      Playstation 5 eller Samsung TV på köpet?
-    </h2>
-
-    <p class="text-white/90 text-center text-lg mb-8">
-      Missa inte våra exklusiva erbjudande när du tecknar via Dealett.
-    </p>
-
-    <!-- Call To Action -->
-    <a href="abonnemang.html"
-       class="promo-cta w-full block text-center py-4 text-xl font-semibold rounded-xl text-white">
-       Utforska mer
-    </a>
-  </div>
-</div>
-
 
   <!-- Header Placeholder -->
   <div id="header-placeholder"></div>
@@ -340,57 +290,11 @@ function initHeroChatMovement() {
   </script>  
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("promo-modal");
-  const closeBtn = document.getElementById("promo-close");
-
-  // Check if user has already seen the popup
-  const promoSeen = localStorage.getItem("promoSeen");
-
-  // Only show popup if not seen before
-  if (!promoSeen) {
-    setTimeout(() => {
-      modal.classList.remove("hidden");
-    }, 500);
-  }
-
-  // Close popup and remember choice
-  const closeModal = () => {
-    modal.classList.add("hidden");
-    localStorage.setItem("promoSeen", "true");
-  };
-
-  if (closeBtn) {
-  closeBtn.onclick = closeModal;
-  }
-
-  if (modal) {
-    modal.onclick = (e) => {
-      if (e.target === modal) closeModal();
-    };
-   }
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
 
   const heroContainer = document.getElementById("hero-chat-container");
 
   if (!heroContainer) return;
-
-
 });
-
-
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
